@@ -17,10 +17,14 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps, withDefaults } from 'vue';
 import { Sidebar } from '../config';
 
-const props = defineProps<{
+interface Props {
   sideBar: Sidebar[];
-}>();
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  sideBar: () => [],
+});
 </script>
