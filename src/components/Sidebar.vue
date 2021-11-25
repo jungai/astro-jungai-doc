@@ -8,9 +8,12 @@
         :class="{
           'text-2xl font-semibold': item.header,
           'hover:bg-gray-100': !item.header,
+          'bg-gray-100': item?.link === currentPath,
         }"
       >
-        {{ item.text }}
+        <a class="block" :href="item?.link || '/'">
+          {{ item.text }}
+        </a>
       </li>
     </ul>
   </nav>
@@ -22,9 +25,11 @@ import { Sidebar } from '../config';
 
 interface Props {
   sideBar: Sidebar[];
+  currentPath: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   sideBar: () => [],
+  currentPath: '/guides',
 });
 </script>
