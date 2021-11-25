@@ -1,0 +1,34 @@
+---
+import Header from '../components/Header.astro'
+import Sidebar from '../components/Sidebar.vue'
+import { sideBar } from '../config'
+
+const { content = {} } = Astro.props;
+---
+
+<html lang="en">
+  <meta charset="UTF-8">
+  <head>
+    <link rel="stylesheet" href={Astro.resolve('../styles/global.css')}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <title>{content.title}</title>
+    <style>
+      * {
+        font-family: 'Kanit', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mx-auto max-w-[1200px]">
+      <Header />
+      <main class="relative flex">
+        <Sidebar class="flex-none w-[30%]" sideBar={sideBar} currentPath={content?.path || '/'}/>
+        <aside class="flex-auto">
+          <slot />
+        </aside>
+      </main>
+    </div>    
+  </body>
+</html>
